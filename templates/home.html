@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Microblog</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
     <header class="navbar">
       <div class="navbar__brand">
         <img
-          src="logo.svg"
+          src="/static/logo.svg"
           alg="The Microblog logo"
           class="navbar__logo"
         />Microblog
@@ -27,7 +27,7 @@
     <main class="main">
       <section>
         <h1>Add new entry</h1>
-        <form class="form" action="/entry" method="POST">
+        <form class="form"  method="POST">
           <p class="form__input">
             <label for="entry" class="form__label">Entry contents</label>
             <textarea
@@ -41,22 +41,17 @@
       </section>
       <section>
         <h1>Recent posts</h1>
+        {% for entry in entries %}
         <article class="entry">
           <div>
-            <h2 class="entry__title">A bit of chill day today</h2>
-            <time class="entry__date" datetime="24-10-2019">Oct 24</time>
+            <h2 class="entry__title">{{entry[0] | truncate(30,true)}}</h2>
+            <time class="entry__date" datetime="24-10-2019"> {{entry[1]}}</time>
           </div>
           <p class="entry__content">
-            lorem Derartige zum Ausgleich herangezogene Vermögenswerte sollten
-            mit dem Risikogewicht versehen werden, das sie als unmittelbares
-            Eigentum der Bank (wie oben beschrieben) ausmachen, multipliziert
-            mit dem prozentualen Anteil der Positionen des Ergänzungskapitals am
-            gesamten Eigenkapital. Vermögenswerte des Fonds, zu denen die Bank
-            uneingeschränkten Zugang hat, können mit Zustimmung der
-            Aufsichtsbehörde dazu verwendet werden, den Abzug vornehmen zu
-            können, wird der Fehlbetrag vom harten Kernkapital abzuziehen ist,
+              {{entry[0]}}
           </p>
         </article>
+        {% endfor %}
       </section>
     </main>
     <footer class="footer">
